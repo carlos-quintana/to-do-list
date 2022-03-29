@@ -53,3 +53,19 @@ function addTask(taskDescription) {
 function resetNewTaskForm() {
     document.querySelector("#new-task-description").value = "";
 }
+
+// When the user clicks on the list of tasks, this function will check
+// which element in the DOM it triggered and act accordingly.
+tasksList.addEventListener("click", event => {
+    console.log("User clicked on the list", event.target)
+    if (event.target.className == "delete-button"){
+        console.log("User clicked on a delete button")
+        deleteTask(event.target)
+    }
+})
+
+function deleteTask(target) {
+    console.log("Removing task", target.parentElement)
+    const row = target.parentElement
+    row.parentElement.removeChild(row)
+}

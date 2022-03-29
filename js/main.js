@@ -1,5 +1,12 @@
 const form = document.querySelector("#new-task-form");
 const tasksList = document.querySelector("#tasks-list");
+const newTaskDescription = document.querySelector("#new-task-description")
+
+let tasks = [];
+
+/*
+ *  Task addition
+ */
 
 // new-task-form is submitted
 form.addEventListener("submit", event => {
@@ -23,7 +30,7 @@ function submitTask() {
 }
 
 function retrieveTaskInput() {
-    return document.querySelector("#new-task-description").value
+    return newTaskDescription.value
 }
 
 function isInputEmpty(input) {
@@ -31,13 +38,23 @@ function isInputEmpty(input) {
 }
 
 function addTask(taskDescription) {
+    addTaskToModel(taskDescription);
+    addTaskToView(taskDescription);
+}
+
+function addTaskToModel(taskDescription) {
+    tasks.push(taskDescription)
+    console.log("Current tasks:", tasks);
+}
+
+function addTaskToView(taskDescription) {
     const newRow = document.createElement("li");
     newRow.className = "task-row";
     console.log(tasksList)
 
     const newDescription = document.createElement("span");
     newDescription.innerText = taskDescription;
-    newDescription.className = "task-name";
+    newDescription.className = "task-description";
 
     const newDeleteButton = document.createElement("button")
     newDeleteButton.className = "delete-button"
@@ -54,6 +71,10 @@ function resetNewTaskForm() {
     document.querySelector("#new-task-description").value = "";
 }
 
+/*
+ *  Task deletion 
+ */
+
 // When the user clicks on the list of tasks, this function will check
 // which element in the DOM it triggered and act accordingly.
 tasksList.addEventListener("click", event => {
@@ -64,8 +85,20 @@ tasksList.addEventListener("click", event => {
     }
 })
 
-function deleteTask(target) {
-    console.log("Removing task", target.parentElement)
-    const row = target.parentElement
+function deleteTask(targetElement) {
+    deleteTaskFromModel(targetElement);
+    deleteTaskFromView(targetElement);
+}
+
+function deleteTaskFromModel(targetElement) {
+    const taskDescription = targetElement.parentElement.querySelector(".task-description").innerText
+    console.log(`Removing task "${taskDescription}" from the model`)
+    tasks = tasks.filter(task => task != taskDescription)
+    console.log("Current tasks:", tasks);
+}
+
+function deleteTaskFromView(targetElement) {
+    console.log("Removing task from view", targetElement.parentElement)
+    const row = targetElement.parentElement
     row.parentElement.removeChild(row)
 }

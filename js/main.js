@@ -1,6 +1,7 @@
 const form = document.querySelector("#new-task-form");
 const tasksList = document.querySelector("#tasks-list");
 const newTaskDescription = document.querySelector("#new-task-description");
+const clearListButton = document.querySelector("#clear-list");
 
 const MAX_ID = 99999; // The integer that will top the random ID generation for the different tasks.
 const MAX_ATTEMPTS = 100 // The number of attempts the program will try to generate an unique id for a task before throwing an error.
@@ -155,4 +156,15 @@ function getRowFromId(taskID) {
             return row;
     }
     return null;
+}
+
+clearListButton.addEventListener("click", () => {
+    if (tasks.length > 0)
+        if (confirm('Are you sure you want to delete all the current tasks?'))
+            clearAllTasks()
+})
+
+function clearAllTasks() {
+    for (let task of tasks)
+        deleteTask(task.id);
 }

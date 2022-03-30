@@ -13,6 +13,7 @@ Tasks have the form:
 }
 */
 let tasks = [];
+initializeExampleTasks()
 
 /*
  *  Task addition
@@ -167,4 +168,21 @@ clearListButton.addEventListener("click", () => {
 function clearAllTasks() {
     for (let task of tasks)
         deleteTask(task.id);
+}
+
+
+/*
+ *  Example tasks
+ */
+
+function initializeExampleTasks() {
+    const exampleTasks = [
+        "Walk the dog",
+        "Take out the trash",
+        "Do the laundry",
+        "Water the plants",
+        "Practice the guitar"
+    ];
+    for (let task of exampleTasks)
+        addTask(task);
 }

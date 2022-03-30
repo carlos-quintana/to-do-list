@@ -1,7 +1,15 @@
 const form = document.querySelector("#new-task-form");
 const tasksList = document.querySelector("#tasks-list");
 const newTaskDescription = document.querySelector("#new-task-description")
+const MAX_ID = 99999; // The integer that will top the random ID generation for the different tasks.
+const MAX_ATTEMPTS = 100 // The number of attempts the program will try to generate an unique id for a task before throwing an error.
 
+/*
+Tasks have the form: 
+{   id: Number,   
+    description: String
+}
+*/
 let tasks = [];
 
 /*
@@ -11,7 +19,7 @@ let tasks = [];
 // new-task-form is submitted
 form.addEventListener("submit", event => {
     event.preventDefault();
-    console.log("The New Task Form was submitted")
+    console.log(" > The New Task Form was submitted")
     submitTask(event)
 })
 
@@ -38,28 +46,60 @@ function isInputEmpty(input) {
 }
 
 function addTask(taskDescription) {
-    addTaskToModel(taskDescription);
-    addTaskToView(taskDescription);
+    const newTask = {
+        "id":          generateID(),
+        "description": taskDescription
+    }
+    addTaskToModel(newTask);
+    addTaskToView(newTask);
 }
 
-function addTaskToModel(taskDescription) {
-    tasks.push(taskDescription)
+function generateID() {
+    let newID;
+    let attempts = 0;
+    do {
+        console.log("(generateID) Generating a new ID")
+        newID = Math.floor(Math.random()*MAX_ID)+1;
+        console.log(`(generateID) Got the id=${newID} on the attempt ${attempts}`)
+        attempts += 1;
+        if (attempts > MAX_ATTEMPTS) {
+            alert("Couldn't create an unique ID for the task");
+            throw "(generateID) Couldn't create an unique ID for the task"
+        };
+    } while (!isUniqueID(newID))
+    return newID;
+}
+
+function isUniqueID(id) {
+    console.log(`(isUniqueID) Verifying the uniqueness of the ID ${id}`)
+    return tasks.filter(task => {return task.id == id;}).length === 0
+}
+
+function addTaskToModel(newTask) {
+    console.log("Adding the task to the model")
+    tasks.push(newTask)
     console.log("Current tasks:", tasks);
 }
 
-function addTaskToView(taskDescription) {
+function addTaskToView(newTask) {
     const newRow = document.createElement("li");
     newRow.className = "task-row";
-    console.log(tasksList)
+    // console.log(tasksList)
+
+    const newID = document.createElement("span");
+    newID.innerText = newTask.id;
+    newID.className = "task-id";
+    newID.hidden = false;
 
     const newDescription = document.createElement("span");
-    newDescription.innerText = taskDescription;
+    newDescription.innerText = newTask.description;
     newDescription.className = "task-description";
 
     const newDeleteButton = document.createElement("button")
     newDeleteButton.className = "delete-button"
     newDeleteButton.innerText = "X"
 
+    newRow.appendChild(newID);
     newRow.appendChild(newDescription);
     newRow.appendChild(newDeleteButton);
 
@@ -91,9 +131,12 @@ function deleteTask(targetElement) {
 }
 
 function deleteTaskFromModel(targetElement) {
+    const taskID = targetElement.parentElement.querySelector(".task-id").innerText
     const taskDescription = targetElement.parentElement.querySelector(".task-description").innerText
-    console.log(`Removing task "${taskDescription}" from the model`)
-    tasks = tasks.filter(task => task != taskDescription)
+    console.log(`Removing task "${taskDescription}" with id ${taskID} from the model`)
+
+    tasks = tasks.filter(task => task.id != taskID)
+
     console.log("Current tasks:", tasks);
 }
 

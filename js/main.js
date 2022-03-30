@@ -54,6 +54,7 @@ function addTask(taskDescription) {
     addTaskToView(newTask);
 }
 
+// As this application does not have a backend, and for the sake of simplicity, it will generate it's own random unique identifiers for model manipulation
 function generateID() {
     let newID;
     let attempts = 0;

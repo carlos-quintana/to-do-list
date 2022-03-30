@@ -1,6 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+body {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+    height: 100vh;
+}
+
+.container {
+    background-color: bisque;
+    height: 100%;
+    width: 100%;
+    margin: 3.125rem auto 0 auto;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 600px) {
+    .container {
+        max-width: 550px;
+    }
+}
+
+@media (min-width: 750px) {
+    .container {
+        max-width: 700px;
+    }
+}
+
+h1 {
+    margin-top: 0.3rem;
+    margin-bottom: 1.75rem;
+}
+
+#tasks-list {
+    font-size: 1.5rem;
+    list-style: none;
+    margin: 0 1rem;
+    align-self: stretch;
+}
+
+.task-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.25rem auto;
+    padding: 0.25rem;
+}
+
+.task-id {
+    font-size: 0.7rem;
+    display:none;
+}
+
 .task-id::before {
     content:"(";
 }
 .task-id::after {
     content:")";
+}
+
+.task-description {
+    margin: 0 1rem;
+    min-width: 60%;
+    text-align: center;
 }

@@ -2,6 +2,7 @@ const form = document.querySelector("#new-task-form");
 const tasksList = document.querySelector("#tasks-list");
 const newTaskDescription = document.querySelector("#new-task-description");
 const clearListButton = document.querySelector("#clear-list");
+const clearLocalStorageButton = document.querySelector("#clear-localstorage");
 
 const MAX_ID = 99999; // The integer that will top the random ID generation for the different tasks.
 const MAX_ATTEMPTS = 100 // The number of attempts the program will try to generate an unique id for a task before throwing an error.
@@ -13,10 +14,10 @@ Tasks have the form:
 }
 */
 let tasks = [];
-initializeExampleTasks()
+initializeTasks();
 
 /*
- *  Task addition
+ *  Input handling
  */
 
 // new-task-form is submitted
@@ -35,7 +36,7 @@ function submitTask() {
         console.log("The task submitted was invalid");
     } else {
         addTask(taskDescriptionInput);
-        resetNewTaskForm();
+        resetTaskForm();
         console.log(`The task "${taskDescriptionInput}" was submitted successfully`);
     }
 }
@@ -47,6 +48,14 @@ function retrieveTaskInput() {
 function isInputEmpty(input) {
     return input === "";
 }
+
+function resetTaskForm() {
+    document.querySelector("#new-task-description").value = "";
+}
+
+/*
+ *  Task addition
+ */
 
 function addTask(taskDescription) {
     const newTask = {
@@ -62,9 +71,9 @@ function generateID() {
     let newID;
     let attempts = 0;
     do {
-        console.log("(generateID) Generating a new ID");
+        // console.log("(generateID) Generating a new ID");
         newID = Math.floor(Math.random() * MAX_ID) + 1;
-        console.log(`(generateID) Got the id=${newID} on the attempt ${attempts}`);
+        // console.log(`(generateID) Got the id=${newID} on the attempt ${attempts}`);
         attempts += 1;
         if (attempts > MAX_ATTEMPTS) {
             alert("Couldn't create an unique ID for the task");
@@ -75,13 +84,14 @@ function generateID() {
 }
 
 function isUniqueID(id) {
-    console.log(`(isUniqueID) Verifying the uniqueness of the ID ${id}`);
+    // console.log(`(isUniqueID) Verifying the uniqueness of the ID ${id}`);
     return tasks.filter(task => { return task.id == id; }).length === 0;
 }
 
 function addTaskToModel(newTask) {
     console.log("Adding the task to the model");
     tasks.push(newTask);
+    localStorage.setItem("tasks",JSON.stringify(tasks.map(task=>task.description)));
     console.log("Current tasks:", tasks);
 }
 
@@ -110,11 +120,6 @@ function addTaskToView(newTask) {
     tasksList.appendChild(newRow);
 }
 
-// Empties the form textbox 
-function resetNewTaskForm() {
-    document.querySelector("#new-task-description").value = "";
-}
-
 /*
  *  Task deletion 
  */
@@ -140,6 +145,7 @@ function deleteTask(taskID) {
 function deleteTaskFromModel(taskID) {
     console.log(`Removing task with id ${taskID} from the model`);
     tasks = tasks.filter(task => task.id != taskID);
+    localStorage.setItem("tasks",JSON.stringify(tasks.map(task=>task.description)));
     console.log("Current tasks:", tasks);
 }
 
@@ -170,19 +176,45 @@ function clearAllTasks() {
         deleteTask(task.id);
 }
 
+clearLocalStorageButton.addEventListener("click", () => {
+    if (confirm('Are you sure you want clear the Local Storage? This will delete all your history on this application')) {
+        localStorage.clear();
+        window.location.reload();
+    }
+})
+
 
 /*
  *  Example tasks
  */
 
-function initializeExampleTasks() {
-    const exampleTasks = [
+function getExampleTasks() {
+    return [
         "Walk the dog",
-        "Take out the trash",
+        "Check emails",
         "Do the laundry",
-        "Water the plants",
+        "Organize my desk",
         "Practice the guitar"
     ];
-    for (let task of exampleTasks)
+}
+
+/*
+ *  Initialize the tasks stored in the LocalStorage
+ */
+
+function initializeTasks() {
+    console.log("(initializeTasks) Initializing Tasks");
+    const storedTasks = localStorage.getItem("tasks");
+    let tasks;
+    if (storedTasks === null) { // First time user is visiting, fill with example tasks
+        console.log("Stored Tasks was null")
+        tasks = getExampleTasks();
+    } else { // Get all the existing tasks from localStorage
+        console.log("Stored Tasks was not null, returned:", storedTasks)
+        tasks = JSON.parse(storedTasks);
+    }
+    for (let task of tasks)
         addTask(task);
+    localStorage.setItem("tasks",JSON.stringify(tasks));
+    return tasks;
 }

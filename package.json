@@ -1,0 +1,22 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "To-Do List application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlos-quintana/to-do-list.git"
+  },
+  "author": "Carlos Quintana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlos-quintana/to-do-list/issues"
+  },
+  "homepage": "https://github.com/carlos-quintana/to-do-list#readme",
+  "devDependencies": {
+    "sass": "^1.49.11"
+  }
+}

@@ -1,6 +1,6 @@
 const form = document.querySelector("#new-task-form");
 const tasksList = document.querySelector("#tasks-list");
-const newTaskDescription = document.querySelector("#new-task-description");
+const newTaskDescription = document.querySelector("#new-task-input");
 const clearListButton = document.querySelector("#clear-list");
 const clearLocalStorageButton = document.querySelector("#clear-localstorage");
 
@@ -50,7 +50,7 @@ function isInputEmpty(input) {
 }
 
 function resetTaskForm() {
-    document.querySelector("#new-task-description").value = "";
+    newTaskDescription.value = "";
 }
 
 /*
@@ -109,9 +109,10 @@ function addTaskToView(newTask) {
     newDescription.innerText = newTask.description;
     newDescription.className = "task-description";
 
-    const newDeleteButton = document.createElement("button");
-    newDeleteButton.className = "delete-button";
-    newDeleteButton.innerText = "X";
+    const newDeleteButton = document.createElement("a");
+    newDeleteButton.classList.add("button");
+    newDeleteButton.classList.add("delete-button");
+    newDeleteButton.innerHTML = '<i class="fas fa-times"></i>';
 
     newRow.appendChild(newID);
     newRow.appendChild(newDescription);
@@ -128,7 +129,7 @@ function addTaskToView(newTask) {
 // which element in the DOM it triggered and act accordingly.
 tasksList.addEventListener("click", event => {
     console.log("> User clicked on the tasks list", event.target);
-    if (event.target.className == "delete-button") {
+    if ([...event.target.classList].includes("delete-button")) {
         console.log("User clicked on a delete button");
         const taskRow = event.target.parentElement;
         const taskID = taskRow.querySelector(".task-id").innerText;

@@ -42,7 +42,7 @@ body::before {
 }
 
 .container {
-  background-color: rgba(233, 200, 225, 0.568);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0), rgba(75, 112, 180, 0.219));
   width: 100%;
   max-width: 700px;
   margin-top: 5rem;
@@ -113,7 +113,7 @@ h1 {
 
 .task-row {
   border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.368627451);
+  background-color: rgba(255, 255, 255, 0.5254901961);
   padding: 0.25rem 0.25rem 0.25rem 1rem;
   margin: 0.75rem 0;
   display: flex;
@@ -138,8 +138,8 @@ h1 {
 }
 
 .delete-button {
-  min-width: 3rem;
-  min-height: 3rem;
+  width: 3rem;
+  height: 3rem;
   background-color: #df4242;
   border-radius: 25%;
   flex-shrink: 0;
@@ -167,10 +167,10 @@ h1 {
 }
 
 #clear-list {
-  background-color: #dfba42;
+  background-color: #ecc238;
 }
 #clear-list:hover {
-  background-color: #e8c965;
+  background-color: #f1cf5e;
 }
 
 #clear-localstorage {
@@ -209,6 +209,19 @@ h1 {
   #add-task-button {
     min-width: 2.5rem;
     min-height: 2.5rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .task-description {
+    font-size: 1.25rem;
+  }
+
+  .delete-button {
+    height: 2.25rem;
+    width: 2.25rem;
   }
 }
 

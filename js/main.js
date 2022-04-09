@@ -112,6 +112,7 @@ function addTaskToView(newTask) {
     const newDeleteButton = document.createElement("button");
     newDeleteButton.classList.add("button");
     newDeleteButton.classList.add("delete-button");
+    newDeleteButton.setAttribute("data-tooltip", "Delete task");
     newDeleteButton.innerHTML = '<i class="fas fa-times"></i>';
 
     newRow.appendChild(newID);

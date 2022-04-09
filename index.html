@@ -14,16 +14,16 @@
         <h1 id="title">TO DO LIST</h1>
         <form action="" id="new-task-form">
             <input type="text" id="new-task-input" placeholder="Add a new task">
-            <button id="add-task-button" class="button" form="new-task-form">
+            <button id="add-task-button" class="button" data-tooltip="Add task" form="new-task-form">
                 <i class="fas fa-plus"></i>
             </button>
         </form>
         <ui id="tasks-list"></ui>
         <div class="lower-buttons-row">
-            <button id="clear-list" class="button">
+            <button id="clear-list" class="button" data-tooltip="Delete all tasks">
                 <i class="fas fa-trash"></i>
             </button>
-            <button id="clear-localstorage" class="button">
+            <button id="clear-localstorage" class="button" data-tooltip="Reset tasks">
                 <i class="fas fa-redo"></i>
             </button>
         </div>

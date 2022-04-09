@@ -1,7 +1,9 @@
 @use "sass:color";
 @use "constants"as *;
+@use "tooltips";
 
-@mixin button($button-color:$black-color, $text-color:"black") {
+@mixin button($button-color:$black-color, $text-color:"white") {
+    @include tooltips.tooltip($button-color);
     background-color: $button-color;
     color: $text-color;
 

@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+/*
+This code was inspired by WebDevSiplified's work.
+*/
 .modal-backdrop {
   visibility: hidden;
   opacity: 0%;
@@ -66,6 +69,7 @@
 }
 
 .modal-warning {
+  position: relative;
   background-color: #ecc238;
   color: white;
   font-family: "Montserrat", sans-serif;
@@ -76,6 +80,40 @@
   transition: 0.3s;
   border: 0;
 }
+.modal-warning::before, .modal-warning::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: $color;
+  font-size: 1.25rem;
+  text-shadow: 0px 1px 5px #333;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+.modal-warning::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+  content: attr(data-tooltip);
+  pointer-events: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 15px;
+  text-align: center;
+  width: max-content;
+  background: #ecc238;
+}
+.modal-warning:hover::before, .modal-warning:hover::after {
+  --scale: 1;
+}
+.modal-warning::after {
+  --translate-y: calc(-1 * var(--arrow-size));
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-top-color: #ecc238;
+  transform-origin: top center;
+}
 .modal-warning:hover {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);
   background-color: #f1cf5e;
@@ -85,6 +123,7 @@
 }
 
 .modal-close {
+  position: relative;
   background-color: #999;
   color: white;
   font-family: "Montserrat", sans-serif;
@@ -94,6 +133,40 @@
   box-shadow: 0 1px 2px 0 rgba(61, 61, 61, 0.24);
   transition: 0.3s;
   border: 0;
+}
+.modal-close::before, .modal-close::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: $color;
+  font-size: 1.25rem;
+  text-shadow: 0px 1px 5px #333;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+.modal-close::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+  content: attr(data-tooltip);
+  pointer-events: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 15px;
+  text-align: center;
+  width: max-content;
+  background: #999;
+}
+.modal-close:hover::before, .modal-close:hover::after {
+  --scale: 1;
+}
+.modal-close::after {
+  --translate-y: calc(-1 * var(--arrow-size));
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-top-color: #999;
+  transform-origin: top center;
 }
 .modal-close:hover {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);
@@ -110,8 +183,9 @@
 }
 
 button {
+  position: relative;
   background-color: #444;
-  color: "black";
+  color: "white";
   font-family: "Montserrat", sans-serif;
   font-size: 1.75rem;
   flex-shrink: 0;
@@ -119,6 +193,40 @@ button {
   box-shadow: 0 1px 2px 0 rgba(61, 61, 61, 0.24);
   transition: 0.3s;
   border: 0;
+}
+button::before, button::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: $color;
+  font-size: 1.25rem;
+  text-shadow: 0px 1px 5px #333;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+button::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+  content: attr(data-tooltip);
+  pointer-events: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 15px;
+  text-align: center;
+  width: max-content;
+  background: #444;
+}
+button:hover::before, button:hover::after {
+  --scale: 1;
+}
+button::after {
+  --translate-y: calc(-1 * var(--arrow-size));
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-top-color: #444;
+  transform-origin: top center;
 }
 button:hover {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);
@@ -191,6 +299,7 @@ h1 {
 }
 
 #clear-list {
+  position: relative;
   background-color: #df4242;
   color: white;
   font-family: "Montserrat", sans-serif;
@@ -201,6 +310,40 @@ h1 {
   transition: 0.3s;
   border: 0;
 }
+#clear-list::before, #clear-list::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: $color;
+  font-size: 1.25rem;
+  text-shadow: 0px 1px 5px #333;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+#clear-list::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+  content: attr(data-tooltip);
+  pointer-events: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 15px;
+  text-align: center;
+  width: max-content;
+  background: #df4242;
+}
+#clear-list:hover::before, #clear-list:hover::after {
+  --scale: 1;
+}
+#clear-list::after {
+  --translate-y: calc(-1 * var(--arrow-size));
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-top-color: #df4242;
+  transform-origin: top center;
+}
 #clear-list:hover {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);
   background-color: #e86565;
@@ -210,6 +353,7 @@ h1 {
 }
 
 #clear-localstorage {
+  position: relative;
   background-color: #ecc238;
   color: white;
   font-family: "Montserrat", sans-serif;
@@ -219,6 +363,40 @@ h1 {
   box-shadow: 0 1px 2px 0 rgba(61, 61, 61, 0.24);
   transition: 0.3s;
   border: 0;
+}
+#clear-localstorage::before, #clear-localstorage::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: $color;
+  font-size: 1.25rem;
+  text-shadow: 0px 1px 5px #333;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+#clear-localstorage::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+  content: attr(data-tooltip);
+  pointer-events: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 15px;
+  text-align: center;
+  width: max-content;
+  background: #ecc238;
+}
+#clear-localstorage:hover::before, #clear-localstorage:hover::after {
+  --scale: 1;
+}
+#clear-localstorage::after {
+  --translate-y: calc(-1 * var(--arrow-size));
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-top-color: #ecc238;
+  transform-origin: top center;
 }
 #clear-localstorage:hover {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);
@@ -259,6 +437,7 @@ h1 {
 }
 
 #add-task-button {
+  position: relative;
   background-color: #3dce74;
   color: white;
   font-family: "Montserrat", sans-serif;
@@ -270,6 +449,40 @@ h1 {
   border: 0;
   min-width: 3.5rem;
   min-height: 3.5rem;
+}
+#add-task-button::before, #add-task-button::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: $color;
+  font-size: 1.25rem;
+  text-shadow: 0px 1px 5px #333;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+#add-task-button::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+  content: attr(data-tooltip);
+  pointer-events: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 15px;
+  text-align: center;
+  width: max-content;
+  background: #3dce74;
+}
+#add-task-button:hover::before, #add-task-button:hover::after {
+  --scale: 1;
+}
+#add-task-button::after {
+  --translate-y: calc(-1 * var(--arrow-size));
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-top-color: #3dce74;
+  transform-origin: top center;
 }
 #add-task-button:hover {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);
@@ -311,6 +524,7 @@ h1 {
 }
 
 .delete-button {
+  position: relative;
   background-color: #df4242;
   color: white;
   font-family: "Montserrat", sans-serif;
@@ -322,6 +536,40 @@ h1 {
   border: 0;
   width: 3rem;
   height: 3rem;
+}
+.delete-button::before, .delete-button::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: $color;
+  font-size: 1.25rem;
+  text-shadow: 0px 1px 5px #333;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+.delete-button::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+  content: attr(data-tooltip);
+  pointer-events: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 15px;
+  text-align: center;
+  width: max-content;
+  background: #df4242;
+}
+.delete-button:hover::before, .delete-button:hover::after {
+  --scale: 1;
+}
+.delete-button::after {
+  --translate-y: calc(-1 * var(--arrow-size));
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-top-color: #df4242;
+  transform-origin: top center;
 }
 .delete-button:hover {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);

@@ -109,7 +109,7 @@ function addTaskToView(newTask) {
     newDescription.innerText = newTask.description;
     newDescription.className = "task-description";
 
-    const newDeleteButton = document.createElement("a");
+    const newDeleteButton = document.createElement("button");
     newDeleteButton.classList.add("button");
     newDeleteButton.classList.add("delete-button");
     newDeleteButton.innerHTML = '<i class="fas fa-times"></i>';
@@ -183,7 +183,7 @@ function clearAllTasks() {
 clearLocalStorageButton.addEventListener("click", () => {
     openModal(
         "Warning",
-        "This will clear the Local Storage of your browser, deleting all your history on this application.<br>Do you wanna proceed?",
+        "This will clear the Local Storage of your browser, deleting all your history on this application and restoring the default tasks.<br>Do you wanna proceed?",
         restoreList);
 
 })
@@ -238,7 +238,7 @@ function openModal(title = "", body = "", buttonFunction = undefined) {
     if (!buttonFunction) return;
 
     // Make the modal visible
-    const modalBackground = document.querySelector("#modal-background");
+    const modalBackground = document.querySelector("#modal-backdrop");
     modalBackground.style.opacity = "100%";
     modalBackground.style.visibility = "visible";
 
@@ -262,7 +262,7 @@ function openModal(title = "", body = "", buttonFunction = undefined) {
 
 function closeModal() {
     console.log("Close the modal")
-    const modalBackground = document.querySelector("#modal-background");
+    const modalBackground = document.querySelector("#modal-backdrop");
     modalBackground.style.opacity = "0%";
     setTimeout(() => {
         modalBackground.style.visibility = "hidden";

@@ -1,0 +1,37 @@
+@use "constants"as *;
+@use "mixin-button"as *;
+
+#tasks-list {
+    list-style: none;
+    align-self: stretch;
+}
+
+.task-row {
+    border-radius: 15px;
+    background-color: $row-background-color;
+
+    padding: 0.25rem 0.25rem 0.25rem 1rem;
+    margin: 0.75rem 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.3s;
+}
+
+.task-id {
+    display: none;
+    font-size: 0.7rem;
+
+    &::before {content: "(";}
+    &::after {content: ")";}
+}
+
+.task-description {width: 100%;}
+
+.delete-button {
+    @include button($red-color, white);
+    width: 3rem;
+    height: 3rem;
+}

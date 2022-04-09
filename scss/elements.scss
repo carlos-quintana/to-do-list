@@ -1,0 +1,94 @@
+@use "constants"as *;
+@use "mixin-button"as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {@include button();}
+
+body {
+    color: $black-color;
+    font-family: $main-font, sans-serif;
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+
+    &::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        background: var(--color-darkblue);
+        background-image: linear-gradient(115deg,
+                rgba(253, 247, 247, 0.75),
+                rgba(149, 147, 255, 0.4)),
+            $background-image;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+
+.container {
+    background-image: linear-gradient(45deg,
+            rgba(255, 255, 255, 0),
+            rgba(75, 112, 180, 0.219));
+
+    width: 100%;
+    max-width: 700px;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    padding: 0 6rem;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+
+h1 {
+    color: $title-color;
+
+    margin-top: 0.3rem;
+    margin-bottom: 1.75rem;
+
+    font-size: 4rem;
+    font-family: Lobster, sans-serif;
+    text-align: center;
+
+    text-shadow: 0px 3px 5px $title-shadow-color;
+
+    user-select: none;
+}
+
+.lower-buttons-row {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        width: 3.5rem;
+        height: 3.5rem;
+        padding-top: 5px;
+        margin-left: 1rem;
+        font-size: 1.75rem;
+    }
+}
+
+#clear-list {@include button($red-color, white);}
+
+#clear-localstorage {@include button($yellow-color, white);}

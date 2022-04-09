@@ -1,0 +1,46 @@
+@use "constants"as *;
+@use "mixin-button"as *;
+
+#new-task-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+#new-task-input {
+    display: inline-block;
+
+    min-width: 100px;
+    height: 3.5rem;
+    padding: 0.375rem 2rem;
+    margin-right: 2rem;
+
+    color: $new-task-text-color;
+    background-color: white;
+    background-clip: padding-box;
+
+    box-shadow: 0px 2px 3px $new-task-shadow;
+
+    font-size: 1.5rem;
+    font-family: inherit;
+
+    border: 1px solid #ced4da;
+    border-radius: 1rem;
+
+    flex-grow: 1;
+
+    transition: 0.3s;
+
+    &:focus {
+        color: $black-color;
+        border-color: $new-task-focus-border-color;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem $new-task-focus-shadow-color;
+    }
+}
+
+#add-task-button {
+    @include button($green-color, white);
+    min-width: 3.5rem;
+    min-height: 3.5rem;
+}

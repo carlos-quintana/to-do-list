@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+$main-font: "Montserrat";
+
+$background-image: url("https://images.unsplash.com/photo-1557672172-298e090bd0f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80");
+
+$green-color: #3dce74;
+$red-color: #df4242;
+$yellow-color: #ecc238;
+$black-color: #444;
+$gray-color: #999;
+
+$container-color: rgba(233, 200, 225, 0.568);
+$row-background-color: #ffffff86;
+$title-color: white;
+$title-shadow-color: rgba(61, 102, 126, 0.589);
+$button-shadow-color: rgba(61, 61, 61, 0.24);
+$button-hover-shadow-color: rgba(0, 0, 0, 0.24);
+
+$new-task-text-color: #78828d;
+$new-task-shadow: rgba(61, 102, 126, 0.267);
+$new-task-focus-border-color: #9ac9fc;
+$new-task-focus-shadow-color: rgba(171, 212, 255, 0.952);
+
+$modal-backdrop-color: #00000055;
+$modal-background-color: white;

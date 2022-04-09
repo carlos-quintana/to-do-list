@@ -91,7 +91,7 @@ function isUniqueID(id) {
 function addTaskToModel(newTask) {
     console.log("Adding the task to the model");
     tasks.push(newTask);
-    localStorage.setItem("tasks",JSON.stringify(tasks.map(task=>task.description)));
+    localStorage.setItem("tasks", JSON.stringify(tasks.map(task => task.description)));
     console.log("Current tasks:", tasks);
 }
 
@@ -146,7 +146,7 @@ function deleteTask(taskID) {
 function deleteTaskFromModel(taskID) {
     console.log(`Removing task with id ${taskID} from the model`);
     tasks = tasks.filter(task => task.id != taskID);
-    localStorage.setItem("tasks",JSON.stringify(tasks.map(task=>task.description)));
+    localStorage.setItem("tasks", JSON.stringify(tasks.map(task => task.description)));
     console.log("Current tasks:", tasks);
 }
 
@@ -167,9 +167,12 @@ function getRowFromId(taskID) {
 }
 
 clearListButton.addEventListener("click", () => {
-    if (tasks.length > 0)
-        if (confirm('Are you sure you want to delete all the current tasks?'))
-            clearAllTasks()
+    if (tasks.length > 0) {
+        openModal(
+            "Warning",
+            "This will delete all the current tasks, do you wanna proceed?",
+            clearAllTasks);
+    }
 })
 
 function clearAllTasks() {
@@ -178,11 +181,17 @@ function clearAllTasks() {
 }
 
 clearLocalStorageButton.addEventListener("click", () => {
-    if (confirm('Are you sure you want clear the Local Storage? This will delete all your history on this application')) {
-        localStorage.clear();
-        window.location.reload();
-    }
+    openModal(
+        "Warning",
+        "This will clear the Local Storage of your browser, deleting all your history on this application.<br>Do you wanna proceed?",
+        restoreList);
+
 })
+
+function restoreList() {
+    localStorage.clear();
+    window.location.reload();
+}
 
 
 /*
@@ -216,6 +225,47 @@ function initializeTasks() {
     }
     for (let task of tasks)
         addTask(task);
-    localStorage.setItem("tasks",JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
     return tasks;
 }
+
+/*
+ *  Modal management
+ */
+
+function openModal(title = "", body = "", buttonFunction = undefined) {
+    console.log("Inside open modal")
+    if (!buttonFunction) return;
+
+    // Make the modal visible
+    const modalBackground = document.querySelector("#modal-background");
+    modalBackground.style.opacity = "100%";
+    modalBackground.style.visibility = "visible";
+
+    // Retrieve all the modal text elements and insert the text
+    const modalTitle = document.querySelector("#modal-title");
+    const modalBody = document.querySelector("#modal-body");
+    modalTitle.innerHTML = title;
+    modalBody.innerHTML = body;
+
+    // Retrieve the buttons and assign their event listeners
+    const modalCloseButton = document.querySelector("#modal-close");
+    const modalCancelButton = document.querySelector("#modal-cancel");
+    const modalOkButton = document.querySelector("#modal-button");
+    modalCloseButton.addEventListener("click", closeModal);
+    modalCancelButton.addEventListener("click", closeModal);
+    modalOkButton.addEventListener("click", () => {
+        buttonFunction();
+        closeModal();
+    });
+}
+
+function closeModal() {
+    console.log("Close the modal")
+    const modalBackground = document.querySelector("#modal-background");
+    modalBackground.style.opacity = "0%";
+    setTimeout(() => {
+        modalBackground.style.visibility = "hidden";
+    }, 200);
+}
+

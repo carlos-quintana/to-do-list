@@ -37,6 +37,7 @@ function submitTask() {
     } else {
         addTask(taskDescriptionInput);
         resetTaskForm();
+        newTaskDescription.focus();
         console.log(`The task "${taskDescriptionInput}" was submitted successfully`);
     }
 }

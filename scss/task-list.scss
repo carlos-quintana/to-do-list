@@ -15,7 +15,7 @@
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     transition: 0.3s;
 }
@@ -28,7 +28,11 @@
     &::after {content: ")";}
 }
 
-.task-description {width: 100%;}
+.task-description {
+    padding-right: 10px;
+    max-width: calc(100% - 3rem);
+    overflow-wrap: break-word;
+}
 
 .delete-button {
     @include button($red-color, white);

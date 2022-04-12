@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
-/*
-This code was inspired by WebDevSiplified's work.
-*/
 .modal-backdrop {
   visibility: hidden;
   opacity: 0%;
@@ -93,6 +90,11 @@ This code was inspired by WebDevSiplified's work.
   transition: 150ms transform;
   transform-origin: bottom center;
 }
+@media (max-width: 500px) {
+  .modal-warning::before, .modal-warning::after {
+    transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  }
+}
 .modal-warning::before {
   --translate-y: calc(-100% - var(--arrow-size));
   content: attr(data-tooltip);
@@ -147,6 +149,11 @@ This code was inspired by WebDevSiplified's work.
   transition: 150ms transform;
   transform-origin: bottom center;
 }
+@media (max-width: 500px) {
+  .modal-close::before, .modal-close::after {
+    transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  }
+}
 .modal-close::before {
   --translate-y: calc(-100% - var(--arrow-size));
   content: attr(data-tooltip);
@@ -194,6 +201,7 @@ button {
   transition: 0.3s;
   border: 0;
 }
+/* The code for the animated tooltips was adapted from WebDevSiplified's work. */
 button::before, button::after {
   --scale: 0;
   --arrow-size: 10px;
@@ -206,6 +214,11 @@ button::before, button::after {
   transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
   transition: 150ms transform;
   transform-origin: bottom center;
+}
+@media (max-width: 500px) {
+  button::before, button::after {
+    transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  }
 }
 button::before {
   --translate-y: calc(-100% - var(--arrow-size));
@@ -323,6 +336,11 @@ h1 {
   transition: 150ms transform;
   transform-origin: bottom center;
 }
+@media (max-width: 500px) {
+  #clear-list::before, #clear-list::after {
+    transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  }
+}
 #clear-list::before {
   --translate-y: calc(-100% - var(--arrow-size));
   content: attr(data-tooltip);
@@ -376,6 +394,11 @@ h1 {
   transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
   transition: 150ms transform;
   transform-origin: bottom center;
+}
+@media (max-width: 500px) {
+  #clear-localstorage::before, #clear-localstorage::after {
+    transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  }
 }
 #clear-localstorage::before {
   --translate-y: calc(-100% - var(--arrow-size));
@@ -463,6 +486,11 @@ h1 {
   transition: 150ms transform;
   transform-origin: bottom center;
 }
+@media (max-width: 500px) {
+  #add-task-button::before, #add-task-button::after {
+    transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  }
+}
 #add-task-button::before {
   --translate-y: calc(-100% - var(--arrow-size));
   content: attr(data-tooltip);
@@ -504,7 +532,7 @@ h1 {
   margin: 0.75rem 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   transition: 0.3s;
 }
 
@@ -520,7 +548,9 @@ h1 {
 }
 
 .task-description {
-  width: 100%;
+  padding-right: 10px;
+  max-width: calc(100% - 3rem);
+  overflow-wrap: break-word;
 }
 
 .delete-button {
@@ -549,6 +579,11 @@ h1 {
   transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
   transition: 150ms transform;
   transform-origin: bottom center;
+}
+@media (max-width: 500px) {
+  .delete-button::before, .delete-button::after {
+    transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  }
 }
 .delete-button::before {
   --translate-y: calc(-100% - var(--arrow-size));
@@ -594,8 +629,12 @@ h1 {
 }
 @media (max-width: 520px) {
   .container {
-    margin-top: 2rem;
     max-width: 99%;
+  }
+}
+@media (max-width: 520px), (max-height: 650px) {
+  .container {
+    margin-top: 2rem;
     padding: 0 5%;
   }
 

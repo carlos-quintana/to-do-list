@@ -1,6 +1,4 @@
-/*
-This code was inspired by WebDevSiplified's work.
-*/
+/* The code for the animated tooltips was adapted from WebDevSiplified's work. */
 @mixin tooltip ($color) {
 
     position: relative;
@@ -13,13 +11,20 @@ This code was inspired by WebDevSiplified's work.
 
         font-size: 1.25rem;
         text-shadow: 0px 1px 5px #333;
-    
+
         position: absolute;
         top: -.25rem;
         left: 50%;
         transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
         transition: 150ms transform;
         transform-origin: bottom center;
+    }
+
+    @media (max-width:500px) {
+        &::before,
+        &::after {
+            transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
+        }
     }
 
     &::before {
@@ -48,4 +53,5 @@ This code was inspired by WebDevSiplified's work.
         border-top-color: $color;
         transform-origin: top center;
     }
+
 }

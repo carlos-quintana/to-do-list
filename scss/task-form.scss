@@ -40,7 +40,7 @@
 }
 
 #add-task-button {
-    @include button($green-color, white);
+    @include button($green-color, white, true);
     min-width: 3.5rem;
     min-height: 3.5rem;
 }

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+/* The code for the animated tooltips was adapted from WebDevSiplified's work. */
 .modal-backdrop {
   visibility: hidden;
   opacity: 0%;
@@ -66,7 +67,6 @@
 }
 
 .modal-warning {
-  position: relative;
   background-color: #ecc238;
   color: white;
   font-family: "Montserrat", sans-serif;
@@ -77,45 +77,6 @@
   transition: 0.3s;
   border: 0;
 }
-.modal-warning::before, .modal-warning::after {
-  --scale: 0;
-  --arrow-size: 10px;
-  --tooltip-color: $color;
-  font-size: 1.25rem;
-  text-shadow: 0px 1px 5px #333;
-  position: absolute;
-  top: -0.25rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
-  transition: 150ms transform;
-  transform-origin: bottom center;
-}
-@media (max-width: 500px) {
-  .modal-warning::before, .modal-warning::after {
-    transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
-  }
-}
-.modal-warning::before {
-  --translate-y: calc(-100% - var(--arrow-size));
-  content: attr(data-tooltip);
-  pointer-events: none;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 15px;
-  text-align: center;
-  width: max-content;
-  background: #ecc238;
-}
-.modal-warning:hover::before, .modal-warning:hover::after {
-  --scale: 1;
-}
-.modal-warning::after {
-  --translate-y: calc(-1 * var(--arrow-size));
-  content: "";
-  border: var(--arrow-size) solid transparent;
-  border-top-color: #ecc238;
-  transform-origin: top center;
-}
 .modal-warning:hover {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);
   background-color: #f1cf5e;
@@ -125,7 +86,6 @@
 }
 
 .modal-close {
-  position: relative;
   background-color: #999;
   color: white;
   font-family: "Montserrat", sans-serif;
@@ -135,45 +95,6 @@
   box-shadow: 0 1px 2px 0 rgba(61, 61, 61, 0.24);
   transition: 0.3s;
   border: 0;
-}
-.modal-close::before, .modal-close::after {
-  --scale: 0;
-  --arrow-size: 10px;
-  --tooltip-color: $color;
-  font-size: 1.25rem;
-  text-shadow: 0px 1px 5px #333;
-  position: absolute;
-  top: -0.25rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
-  transition: 150ms transform;
-  transform-origin: bottom center;
-}
-@media (max-width: 500px) {
-  .modal-close::before, .modal-close::after {
-    transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
-  }
-}
-.modal-close::before {
-  --translate-y: calc(-100% - var(--arrow-size));
-  content: attr(data-tooltip);
-  pointer-events: none;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 15px;
-  text-align: center;
-  width: max-content;
-  background: #999;
-}
-.modal-close:hover::before, .modal-close:hover::after {
-  --scale: 1;
-}
-.modal-close::after {
-  --translate-y: calc(-1 * var(--arrow-size));
-  content: "";
-  border: var(--arrow-size) solid transparent;
-  border-top-color: #999;
-  transform-origin: top center;
 }
 .modal-close:hover {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);
@@ -190,7 +111,6 @@
 }
 
 button {
-  position: relative;
   background-color: #444;
   color: "white";
   font-family: "Montserrat", sans-serif;
@@ -200,46 +120,6 @@ button {
   box-shadow: 0 1px 2px 0 rgba(61, 61, 61, 0.24);
   transition: 0.3s;
   border: 0;
-}
-/* The code for the animated tooltips was adapted from WebDevSiplified's work. */
-button::before, button::after {
-  --scale: 0;
-  --arrow-size: 10px;
-  --tooltip-color: $color;
-  font-size: 1.25rem;
-  text-shadow: 0px 1px 5px #333;
-  position: absolute;
-  top: -0.25rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
-  transition: 150ms transform;
-  transform-origin: bottom center;
-}
-@media (max-width: 500px) {
-  button::before, button::after {
-    transform: translateX(-75%) translateY(var(--translate-y, 0)) scale(var(--scale));
-  }
-}
-button::before {
-  --translate-y: calc(-100% - var(--arrow-size));
-  content: attr(data-tooltip);
-  pointer-events: none;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 15px;
-  text-align: center;
-  width: max-content;
-  background: #444;
-}
-button:hover::before, button:hover::after {
-  --scale: 1;
-}
-button::after {
-  --translate-y: calc(-1 * var(--arrow-size));
-  content: "";
-  border: var(--arrow-size) solid transparent;
-  border-top-color: #444;
-  transform-origin: top center;
 }
 button:hover {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);

@@ -89,6 +89,6 @@ h1 {
     }
 }
 
-#clear-list {@include button($red-color, white);}
+#clear-list {@include button($red-color, white, true);}
 
-#clear-localstorage {@include button($yellow-color, white);}
+#clear-localstorage {@include button($yellow-color, white, true);}

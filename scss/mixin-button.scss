@@ -2,13 +2,17 @@
 @use "constants"as *;
 @use "tooltips";
 
-@mixin button($button-color:$black-color, $text-color:"white") {
-    @include tooltips.tooltip($button-color);
+@mixin button($button-color:$black-color, $text-color:"white", $has-tooltip:false) {
+    @if $has-tooltip {
+        @include tooltips.tooltip($button-color);
+    }
+
     background-color: $button-color;
     color: $text-color;
 
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.75rem;    
+    font-family: "Montserrat",
+    sans-serif;
+    font-size: 1.75rem;
 
     flex-shrink: 0;
 
@@ -16,7 +20,7 @@
     box-shadow: 0 1px 2px 0 $button-shadow-color;
     transition: 0.3s;
     border: 0;
-    
+
     &:hover {
         box-shadow: 0 3px 5px 0 $button-hover-shadow-color;
         @include _hover-button-color($button-color);

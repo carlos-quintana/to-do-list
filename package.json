@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/carlos-quintana/to-do-list/issues"
   },
-  "homepage": "https://github.com/carlos-quintana/to-do-list#readme",
-  "devDependencies": {
-    "sass": "^1.49.11"
-  }
+  "homepage": "https://github.com/carlos-quintana/to-do-list#readme"
 }

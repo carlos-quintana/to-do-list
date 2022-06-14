@@ -60,6 +60,44 @@ body {
     transition: 0.3s;
 }
 
+#contact-info {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+#contact-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+
+    a {
+        font-size: 1.2rem;
+        min-height: 2rem;
+        color: #222;
+        text-decoration: none;
+        background-color: #dddddd55;
+        padding: 2px 8px 2px 12px;
+        border-radius: 15px;
+        transition: background-color 0.25s;
+        user-select: none;
+
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+
+        i {
+            color: #444;
+            margin-right: 5px;
+        }
+
+        &:hover {
+            background-color: #dddddd;
+            cursor: pointer;
+        }
+    }
+
+}
 
 h1 {
     color: $title-color;

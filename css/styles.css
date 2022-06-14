@@ -168,6 +168,40 @@ body::before {
   transition: 0.3s;
 }
 
+#contact-info {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+#contact-icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+#contact-icons a {
+  font-size: 1.2rem;
+  min-height: 2rem;
+  color: #222;
+  text-decoration: none;
+  background-color: rgba(221, 221, 221, 0.3333333333);
+  padding: 2px 8px 2px 12px;
+  border-radius: 15px;
+  transition: background-color 0.25s;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+#contact-icons a i {
+  color: #444;
+  margin-right: 5px;
+}
+#contact-icons a:hover {
+  background-color: #dddddd;
+  cursor: pointer;
+}
+
 h1 {
   color: white;
   margin-top: 0.3rem;
